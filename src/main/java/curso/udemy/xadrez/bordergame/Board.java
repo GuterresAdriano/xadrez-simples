@@ -4,9 +4,6 @@ import curso.udemy.xadrez.exceptions.BorderException;
 
 public class Board {
 	
-	private static final String MINIMUM_POSITION    = "Error creating board: there most be at least 1 rows and 1 collunms!";
-	private static final String MAXIMUM_POSITION    = "Error creating board: there most be maximum 8 rows and 8 collunms!";
-	private static final String IRREGULAR_FORMAT    = "Error creating board: there most be equals number of rows and colunms!";
 	private static final String POSITION_NOT_EXISTS = "Error: this position not existis!";
 	private static final String POSITION_IS_OCCUPIED   = "There is already a piece on position ";
 
@@ -50,7 +47,7 @@ public class Board {
 	}
 	
 	private boolean positionExists(int row, int column) {
-		return ((row >= 0)&&(row < ROWS)) && ((column >= 0)&&(column < COLUNMS)); 
+		return (row >= 0 && row < ROWS) && (column >= 0 && column < COLUNMS); 
 	}
 	
 	public boolean positionExists(Position position) {

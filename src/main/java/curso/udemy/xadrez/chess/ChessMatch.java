@@ -1,8 +1,11 @@
 package curso.udemy.xadrez.chess;
 
 import curso.udemy.xadrez.bordergame.Board;
-import curso.udemy.xadrez.bordergame.Position;
-import curso.udemy.xadrez.chess.pieces.*;
+import curso.udemy.xadrez.chess.pieces.Bishop;
+import curso.udemy.xadrez.chess.pieces.Horse;
+import curso.udemy.xadrez.chess.pieces.King;
+import curso.udemy.xadrez.chess.pieces.Queen;
+import curso.udemy.xadrez.chess.pieces.Rook;
 
 public class ChessMatch {
 
