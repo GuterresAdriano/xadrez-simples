@@ -1,11 +1,15 @@
 package curso.udemy.xadrez.chess;
 
 import curso.udemy.xadrez.bordergame.Board;
+import curso.udemy.xadrez.bordergame.Piece;
+import curso.udemy.xadrez.bordergame.Position;
 import curso.udemy.xadrez.chess.pieces.Bishop;
 import curso.udemy.xadrez.chess.pieces.Horse;
 import curso.udemy.xadrez.chess.pieces.King;
+import curso.udemy.xadrez.chess.pieces.Pawn;
 import curso.udemy.xadrez.chess.pieces.Queen;
 import curso.udemy.xadrez.chess.pieces.Rook;
+import curso.udemy.xadrez.exceptions.BorderException;
 
 public class ChessMatch {
 
@@ -27,10 +31,35 @@ public class ChessMatch {
 		}
 		return chessPieces;		
 	}
-	
-	private void placeNewPiece(char colunm, int row, ChessPiece piece ) {
-		board.placePiece(piece, new ChessPosition(colunm, row).toPosition());
+
+	public ChessPiece performChessMove(ChessPosition originPosition, ChessPosition targetPosition) {
+		Position source = originPosition.toPosition();
+		Position target = targetPosition.toPosition();
+
+		validateSourcePosition(source);		
+
+		return (ChessPiece)  makeMove(source, target);
 	}
+
+
+	private Piece makeMove(Position source, Position target) {
+		Piece p = board.removePiec(source);
+		Piece capturedPiece = board.removePiec(target);
+		board.placePiece(p, target);		
+		return capturedPiece;
+	}
+
+	private void validateSourcePosition(Position source) {
+		if(!board.thereIsAPiece(source)) {
+			throw new BorderException("There is no piece on source position.");
+		}
+	}
+
+	private void placeNewPiece(char colunm, int row, ChessPiece piece ) {
+		board.placePiece(piece, new ChessPosition(colunm, row).toPosition());		
+	}
+
+
 
 	private void initializeGame() {
 
@@ -43,14 +72,14 @@ public class ChessMatch {
 		placeNewPiece('b', 8,new Horse (this.board,Color.WHITE));
 		placeNewPiece('a', 8,new Rook  (this.board,Color.WHITE));
 
-		placeNewPiece('h', 7,new Rook  (this.board,Color.WHITE));
-		placeNewPiece('g', 7,new Horse (this.board,Color.WHITE));
-		placeNewPiece('f', 7,new Bishop(this.board,Color.WHITE));
-		placeNewPiece('e', 7,new King  (this.board,Color.WHITE));
-		placeNewPiece('d', 7,new Queen (this.board,Color.WHITE));
-		placeNewPiece('c', 7,new Bishop(this.board,Color.WHITE));		
-		placeNewPiece('b', 7,new Horse (this.board,Color.WHITE));
-		placeNewPiece('a', 7,new Rook  (this.board,Color.WHITE)); 
+		placeNewPiece('h', 7,new Pawn(this.board,Color.WHITE));
+		placeNewPiece('g', 7,new Pawn(this.board,Color.WHITE));
+		placeNewPiece('f', 7,new Pawn(this.board,Color.WHITE));
+		placeNewPiece('e', 7,new Pawn(this.board,Color.WHITE));
+		placeNewPiece('d', 7,new Pawn(this.board,Color.WHITE));
+		placeNewPiece('c', 7,new Pawn(this.board,Color.WHITE));		
+		placeNewPiece('b', 7,new Pawn(this.board,Color.WHITE));
+		placeNewPiece('a', 7,new Pawn(this.board,Color.WHITE)); 
 
 		placeNewPiece('h', 1,new Rook  (this.board,Color.BLACK));
 		placeNewPiece('g', 1,new Horse (this.board,Color.BLACK));
@@ -61,14 +90,14 @@ public class ChessMatch {
 		placeNewPiece('b', 1,new Horse (this.board,Color.BLACK));
 		placeNewPiece('a', 1,new Rook  (this.board,Color.BLACK));
 
-		placeNewPiece('h', 2,new Rook  (this.board,Color.BLACK));
-		placeNewPiece('g', 2,new Horse (this.board,Color.BLACK));
-		placeNewPiece('f', 2,new Bishop(this.board,Color.BLACK));
-		placeNewPiece('e', 2,new King  (this.board,Color.BLACK));
-		placeNewPiece('d', 2,new Queen (this.board,Color.BLACK));
-		placeNewPiece('c', 2,new Bishop(this.board,Color.BLACK));		
-		placeNewPiece('b', 2,new Horse (this.board,Color.BLACK));
-		placeNewPiece('a', 2,new Rook  (this.board,Color.BLACK));  
+		placeNewPiece('h', 2,new Pawn (this.board,Color.BLACK));
+		placeNewPiece('g', 2,new Pawn(this.board,Color.BLACK));
+		placeNewPiece('f', 2,new Pawn(this.board,Color.BLACK));
+		placeNewPiece('e', 2,new Pawn(this.board,Color.BLACK));
+		placeNewPiece('d', 2,new Pawn(this.board,Color.BLACK));
+		placeNewPiece('c', 2,new Pawn(this.board,Color.BLACK));		
+		placeNewPiece('b', 2,new Pawn(this.board,Color.BLACK));
+		placeNewPiece('a', 2,new Pawn(this.board,Color.BLACK));  
 
 	}
 
