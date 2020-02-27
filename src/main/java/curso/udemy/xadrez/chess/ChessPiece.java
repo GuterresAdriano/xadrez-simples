@@ -2,6 +2,7 @@ package curso.udemy.xadrez.chess;
 
 import curso.udemy.xadrez.bordergame.Board;
 import curso.udemy.xadrez.bordergame.Piece;
+import curso.udemy.xadrez.bordergame.Position;
 
 public abstract class ChessPiece extends Piece{
 	
@@ -14,5 +15,10 @@ public abstract class ChessPiece extends Piece{
 
 	public Color getColor() {
 		return color;
+	}
+	
+	protected boolean isThereOpponentPiece(Position position) {
+		ChessPiece piece = (ChessPiece) getBoard().piece(position);
+		return piece != null && piece.getColor() != color;
 	}
 }

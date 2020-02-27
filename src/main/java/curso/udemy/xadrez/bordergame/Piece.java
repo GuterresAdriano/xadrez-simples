@@ -11,13 +11,7 @@ public abstract class Piece {
 	
 	protected Board getBoard() {
 		return board;
-	}
-	
-	public abstract boolean[][] possibleMoves();
-	
-	public boolean possibleMove(Position position) {
-		return possibleMoves()[position.getRow()][position.getColumn()];
-	}
+	}		
 	
 	public boolean isThereAnyPossibleMove() {
 		boolean[][] mat = possibleMoves();
@@ -30,4 +24,11 @@ public abstract class Piece {
 		}
 		return false;
 	}
+	
+	public abstract boolean[][] possibleMoves();
+	
+	public boolean possibleMove(Position position) {
+		return possibleMoves()[position.getRow()][position.getColumn()];
+	}
+	
 }
