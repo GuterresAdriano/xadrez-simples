@@ -1,6 +1,8 @@
 
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import curso.udemy.xadrez.application.UI;
@@ -15,11 +17,13 @@ public class App{
 		Scanner scanner = new Scanner(System.in);
 
 		ChessMatch chessMatch = new ChessMatch();
+		
+		List<ChessPiece> list = new ArrayList<ChessPiece>();
 
 		while (true) {
 			try {
 				UI.clearScreen();
-				UI.printMach(chessMatch);
+				UI.printMach(chessMatch, list);
 
 				System.out.println();
 				System.out.print("Source: ");
@@ -35,7 +39,9 @@ public class App{
 				ChessPosition target = UI.readChessPosition(scanner);
 
 				ChessPiece capturedPiece = chessMatch.performChessMoves(source, target);
-				System.out.println();
+				if(capturedPiece != null) {
+					list.add(capturedPiece);
+				}
 
 			}catch (ChessException e) {
 				System.out.println(e.getMessage());

@@ -1,5 +1,8 @@
 package curso.udemy.xadrez.chess;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import curso.udemy.xadrez.bordergame.Board;
 import curso.udemy.xadrez.bordergame.Piece;
 import curso.udemy.xadrez.bordergame.Position;
@@ -17,6 +20,9 @@ public class ChessMatch {
 	private Board board;
 	private int turn;
 	private Color currentPlayer;
+	
+	private List<ChessPiece> piecesOnTheBoard = new ArrayList<ChessPiece>();
+	private List<Piece> capturedPieces = new ArrayList<Piece>();
 	
 	public ChessMatch() {
 		this.board = new Board();
@@ -79,7 +85,12 @@ public class ChessMatch {
 	private Piece makeMove(Position source, Position target) {
 		Piece p = board.removePiec(source);
 		Piece capturedPiece = board.removePiec(target);
-		board.placePiece(p, target);		
+		board.placePiece(p, target);
+		
+		if(capturedPiece != null) {
+			piecesOnTheBoard.remove(capturedPiece);
+			capturedPieces.add(capturedPiece);			
+		}
 		return capturedPiece;
 	}
 
@@ -99,7 +110,8 @@ public class ChessMatch {
 	}
 
 	private void placeNewPiece(char colunm, int row, ChessPiece piece ) {
-		board.placePiece(piece, new ChessPosition(colunm, row).toPosition());		
+		board.placePiece(piece, new ChessPosition(colunm, row).toPosition());
+		piecesOnTheBoard.add(piece);
 	}
 
 
