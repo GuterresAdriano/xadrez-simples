@@ -15,12 +15,10 @@ public class App{
 	public static void main( String[] args ){
 
 		Scanner scanner = new Scanner(System.in);
-
-		ChessMatch chessMatch = new ChessMatch();
-		
+		ChessMatch chessMatch = new ChessMatch();		
 		List<ChessPiece> list = new ArrayList<ChessPiece>();
 
-		while (true) {
+		while (!chessMatch.isCheckMate()) {
 			try {
 				UI.clearScreen();
 				UI.printMatch(chessMatch, list);
@@ -50,9 +48,9 @@ public class App{
 				System.out.println(e.getMessage());
 				scanner.hasNextLine();
 			}
-
-		}
-
-
+		}		
+		
+		UI.clearScreen();
+		UI.printMatch(chessMatch, list);
 	}
 }
