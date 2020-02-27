@@ -52,7 +52,7 @@ public class UI {
 			throw new InputMismatchException("Error reading ChessPosition. Valid values are from 01 a h8");
 		}
 	}
-	
+
 	private static void printPiece(ChessPiece piece) {
 
 		if (piece == null) {
@@ -67,6 +67,11 @@ public class UI {
 			}
 		}
 		System.out.print(" ");
+	}
+
+	public static void clearScreen() {
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
 	}
 
 }
