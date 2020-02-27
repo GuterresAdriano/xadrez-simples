@@ -7,12 +7,10 @@ public class ChessPosition {
 	
 	private int row;
 	private char column; 
-	
-	
-	
+		
 	public ChessPosition(char column,int row) { 
 		if(column < 'a' || column > 'h' || row < 1 || row > 8) {
-			throw new ChessException("Error invalid position: .");
+			throw new ChessException("Error invalid position: Valid values are from a1 to h8.");
 		}		
 		this.row = row;
 		this.column = column;
@@ -22,8 +20,8 @@ public class ChessPosition {
 		return new Position(8-row, column - 'a');
 	}
 	
-	protected static Position fromPosition(Position position) {
-		return new Position((char)('a'-position.getColumn()), 8-position.getRow());
+	protected static ChessPosition fromPosition(Position position) {
+		return new ChessPosition((char)('a'+ position.getColumn()), 8-position.getRow());
 	}
 	
 	@Override
