@@ -1,7 +1,10 @@
 package curso.udemy.xadrez.application;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import curso.udemy.xadrez.chess.ChessMatch;
 import curso.udemy.xadrez.chess.ChessPiece;
@@ -90,11 +93,28 @@ public class UI {
 		
 	}
 	
-	public static void printMach(ChessMatch chessMatch) {
+	public static void printMach(ChessMatch chessMatch, List<ChessPiece> captured) {
 		printBoard(chessMatch.getPiecces());
+		PrintCapturedPieces(captured);
 		System.out.println("\nTurn: "+ chessMatch.getTurn());
 		System.out.println("Waiting player: "+ chessMatch.getCurrentPlayer());
 		
+	}
+	
+	private static void PrintCapturedPieces(List<ChessPiece> captured) {
+		List<ChessPiece> white = captured.stream().filter(x-> x.getColor() == Color.WHITE).collect(Collectors.toList());
+		List<ChessPiece> black = captured.stream().filter(x-> x.getColor() == Color.BLACK).collect(Collectors.toList());
+		
+		System.out.println("Captured Pieces");
+		System.out.print("White: ");
+		System.out.print(ANSI_WHITE);
+		System.out.println(Arrays.toString(white.toArray()));
+		System.out.print(ANSI_RESET);
+		
+		System.out.print("Black: ");
+		System.out.print(ANSI_YELLOW);
+		System.out.println(Arrays.toString(black.toArray()));
+		System.out.print(ANSI_RESET);
 	}
 	
 	
