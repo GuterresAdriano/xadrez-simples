@@ -15,4 +15,10 @@ public class Queen extends ChessPiece {
 		return "Q";
 	}
 
+	
+	@Override
+	public boolean[][] possibleMoves() {
+		boolean[][] mat = new boolean[getBoard().ROWS][getBoard().COLUNMS];
+		return null;
+	}
 }
