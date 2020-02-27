@@ -23,7 +23,7 @@ public class App{
 		while (true) {
 			try {
 				UI.clearScreen();
-				UI.printMach(chessMatch, list);
+				UI.printMatch(chessMatch, list);
 
 				System.out.println();
 				System.out.print("Source: ");
@@ -32,7 +32,7 @@ public class App{
 				boolean[][] possibleMoves = chessMatch.possibleMoves(source);
 				
 				UI.clearScreen();
-				UI.printBoard(chessMatch.getPiecces(), possibleMoves);
+				UI.printBoard(chessMatch.getPieces(), possibleMoves);
 
 				System.out.println();
 				System.out.print("Target: ");

@@ -7,7 +7,7 @@ public class Board {
 	private static final String POSITION_NOT_EXISTS = "Error: this position not existis!";
 	private static final String POSITION_IS_OCCUPIED   = "There is already a piece on position ";
 
-	private static final int DIMENSION   = 8;
+	private static final int DIMENSION = 8;
 	
 	public final int ROWS   = DIMENSION;
 	public final int COLUNMS = DIMENSION;
@@ -39,7 +39,7 @@ public class Board {
 		piece.position = position;		
 	}	
 	
-	public Piece removePiec(Position position) {
+	public Piece removePiece(Position position) {
 		if(!positionExists(position)) {
 			throw new BorderException(POSITION_NOT_EXISTS);
 		}
