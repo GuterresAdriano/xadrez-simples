@@ -3,7 +3,7 @@ package curso.udemy.xadrez.chess;
 import curso.udemy.xadrez.bordergame.Board;
 import curso.udemy.xadrez.bordergame.Piece;
 
-public class ChessPiece extends Piece{
+public abstract class ChessPiece extends Piece{
 	
 	private Color color; 
 
@@ -15,5 +15,4 @@ public class ChessPiece extends Piece{
 	public Color getColor() {
 		return color;
 	}
-
 }
