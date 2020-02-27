@@ -15,10 +15,23 @@ import curso.udemy.xadrez.exceptions.ChessException;
 public class ChessMatch {
 
 	private Board board;
-
+	private int turn;
+	private Color currentPlayer;
+	
 	public ChessMatch() {
 		this.board = new Board();
+		this.turn = 1;
+		this.currentPlayer = Color.WHITE;
+		
 		initializeGame();
+	}
+
+	public int getTurn() {
+		return turn;
+	}	
+
+	public Color getCurrentPlayer() {
+		return currentPlayer;
 	}
 
 	public ChessPiece[][] getPiecces(){
@@ -45,8 +58,14 @@ public class ChessMatch {
 
 		validateSourcePosition(source);
 		validateTargetPosition(source, target);
-
+		nextTurn();	
+		
 		return (ChessPiece)  makeMove(source, target);
+	}
+	
+	public void nextTurn() {
+		turn++;
+		currentPlayer = currentPlayer == Color.WHITE ? Color.BLACK: Color.WHITE; 
 	}
 
 
@@ -68,6 +87,12 @@ public class ChessMatch {
 		if(!board.thereIsAPiece(source)) {
 			throw new BorderException("There is no piece on source position.");
 		}
+			
+		
+		if (currentPlayer != ((ChessPiece) board.piece(source)).getColor()) {
+			throw new ChessException("The chosen piece is not yours");
+		}
+		
 		if(!board.piece(source).isThereAnyPossibleMove()) {
 			throw new ChessException("There is no possible moves for the chosen piece.");
 		}

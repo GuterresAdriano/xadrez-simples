@@ -3,6 +3,7 @@ package curso.udemy.xadrez.application;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import curso.udemy.xadrez.chess.ChessMatch;
 import curso.udemy.xadrez.chess.ChessPiece;
 import curso.udemy.xadrez.chess.ChessPosition;
 import curso.udemy.xadrez.chess.Color;
@@ -86,6 +87,13 @@ public class UI {
 			System.out.println("");
 		}		
 		System.out.println("  a b c d e f g h");
+		
+	}
+	
+	public static void printMach(ChessMatch chessMatch) {
+		printBoard(chessMatch.getPiecces());
+		System.out.println("\nTurn: "+ chessMatch.getTurn());
+		System.out.println("Waiting player: "+ chessMatch.getCurrentPlayer());
 		
 	}
 	
